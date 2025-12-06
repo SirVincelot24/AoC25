@@ -1,9 +1,9 @@
-from itertools import zip_longest, batched
+from itertools import zip_longest
 from math import prod
 
 # Parser
 parsedInput = []
-with open("testinput.txt", "r") as puzzleInput:
+with open("input.txt", "r") as puzzleInput:
     for line in puzzleInput.readlines():
         strippedLine = line[:-1]#.strip().split(" ")
         lineList = []
@@ -15,6 +15,39 @@ operators = parsedInput[-1]
 parsedInput.pop(-1)
 
 # Functions
+def batchOperatorList(lst):
+    batchedList = []
+    batch = []
+    for i in range(len(lst)):
+        if i == 0:
+            batch.append(lst[i])
+            continue
+        if not (lst[i] == "+" or lst[i] == "*"):
+            batch.append(lst[i])
+            continue
+        else:
+            batchedList.append(tuple(batch))
+            batch.clear()
+            batch.append(lst[i])
+    batchedList.append(tuple(batch))
+    return batchedList
+
+def batchNumberList(lst):
+    batchedList = []
+    batch = []
+    for i in range(len(lst)):
+        if i == 0:
+            batch.append(lst[i])
+            continue
+        if not (lst[i] == ""):
+            batch.append(lst[i])
+            continue
+        else:
+            batch.append(lst[i])
+            batchedList.append(tuple(batch))
+            batch.clear()
+    return batchedList
+
 
 # Program
 solutions = []
@@ -25,35 +58,24 @@ columnNumbers.append("")
 print(columnNumbers)
 
 print(operators)
-batchedOperators = []
-batch = []
-for i in range(len(operators)):
-    if i == 0:
-        batch.append(operators[i])
-        continue
-    if not (operators[i] == "+" or operators[i] == "*"):
-        batch.append(operators[i])
-        continue
-    else:
-        batchedOperators.append(batch)
-        batch.clear()
-        batch.append(operators[i])
-# batchedOperators = list(map(lambda x: x[0], batchedOperators))
+batchedOperators = batchOperatorList(operators)
+onlyOperators = list(map(lambda x: x[0], batchedOperators))
 print(batchedOperators)
+print(onlyOperators)
 
-# batchedNumbers = list(batched(columnNumbers, n=columnNumbers.index("")+1))
-# print(batchedNumbers)
-# batchedNumbers = list(map(lambda x: x[:-1], batchedNumbers))
-# print(batchedNumbers)
-# batchedNumbers = list(map(lambda x: list(map(lambda y: int(y), x)), batchedNumbers))
-# print(batchedNumbers)
-#
-# for operation in range(len(batchedNumbers)):
-#     solution = 0
-#     if batchedOperators[operation] == "+":
-#         solution = sum(batchedNumbers[operation])
-#     else:
-#         solution = prod(batchedNumbers[operation])
-#     solutions.append(solution)
-# print(solutions)
-# print(sum(solutions))
+batchedNumbers = batchNumberList(columnNumbers)
+print(batchedNumbers)
+batchedNumbers = list(map(lambda x: x[:-1], batchedNumbers))
+print(batchedNumbers)
+batchedNumbers = list(map(lambda x: list(map(lambda y: int(y), x)), batchedNumbers))
+print(batchedNumbers)
+
+for operation in range(len(batchedNumbers)):
+    solution = 0
+    if onlyOperators[operation] == "+":
+        solution = sum(batchedNumbers[operation])
+    else:
+        solution = prod(batchedNumbers[operation])
+    solutions.append(solution)
+print(solutions)
+print(sum(solutions))
