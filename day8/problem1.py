@@ -25,33 +25,45 @@ def findShortestPoints(inp : list, blacklist : list[list[tuple[int, int, int]]]=
                 shortestPoints = [c1, c2]
     return list(shortestPoints)
 
-def combine(connectedPoints):
-    finalConnectedPoints = []
-    for i, pair1 in enumerate(connectedPoints):
-        for j, pair2 in enumerate(connectedPoints[i + 1:]):
-            for point1 in pair1:
-                if point1 in pair2:
-                    print(pair1, " & ", pair2)
-                    print(pair1+pair2)
-                    print(set(pair1+pair2))
-                    print(list(set(pair1+pair2)))
-                    finalConnectedPoints.append(list(set(pair1+pair2)))
-                    # if not connectedPoints[i] == connectedPoints[-1]:
-                    # print(connectedPoints.pop(j))
-                    print("###############################################")
-                    for _ in connectedPoints:
-                        print(_)
-                    print("###############################################")
-    return finalConnectedPoints
+# def combine(connectedPoints):
+#     finalConnectedPoints = []
+#     for i, pair1 in enumerate(connectedPoints):
+#         pair1connected = set(pair1)
+#         for j, pair2 in enumerate(connectedPoints[i + 1:]):
+#             for point1 in pair1:
+#                 if point1 in pair2:
+#                     # print(pair1, " & ", pair2)
+#                     # print(pair1+pair2)
+#                     # print(set(pair1+pair2))
+#                     # print(list(set(pair1+pair2)))
+#                     # print("###############################################")
+#                     # for _ in connectedPoints:
+#                     #     print(_)
+#                     # print("###############################################")
+#                     for _ in tuple(set(pair1+pair2)):
+#                         pair1connected.add(_)
+#                     break
+#         finalConnectedPoints.append(list(pair1connected))
+#     return finalConnectedPoints
+
+def combine(points : list[tuple[int, int, int]]) -> list[tuple[int, int, int]]:
+    combined = set()
+    for i, point1 in enumerate(points):
+        point1 = set(point1)
+        for point2 in points[i+1:]:
+            point2 = set(point2)
+            if point1 & point2 != set():
+                combined.add(tuple(point1 | point2))
+    return list(combined)
 
 # Program
 connectedPoints = []
-for _ in range(10):
+for _ in range(11):
     connectedPoints.append(findShortestPoints(parsedInput, connectedPoints))
-# for _ in range(100):
-#     connectedPoints = combine(connectedPoints)
 for _ in connectedPoints:
     print(_)
-connectedPoints = combine(connectedPoints)
+for _ in range(3):
+    connectedPoints = combine(connectedPoints)
+print("-----------------------------------------------")
 for _ in connectedPoints:
     print(_)
