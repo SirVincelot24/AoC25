@@ -16,7 +16,7 @@ if [ $# -eq 2 ]; then
     cd ..
   done
 fi
-if [ $# -ne 2 ]; then
+if [ $# -ne 2 ] && [ $# -ne 3 ]; then
   echo "Usage: $0 <day> [<tillDay>]"
   exit 1
 fi
