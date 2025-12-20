@@ -30,18 +30,8 @@ for machine in parsedInput:
     buttons = machine[1]
     joltage = machine[2]
     initialLights = [False for i in targetLights]
-
-    possibilities = 2 ** (len(buttons)+1) - 1
+    possibilities = 2 ** (len(buttons)+1) - 1 # endless
     smallestNumberOfPresses = len(buttons)
-    for i in range(possibilities):
-        combination = f"{i:0>{len(buttons)+1}b}"
-        combinationList = []
-        for index, j in enumerate(combination):
-            if int(j) == 1:
-                initialLights = pressButton(initialLights, buttons[index])
-                if initialLights == targetLights:
-                    break
-
     print("targetLights:", targetLights)
     print("buttons:", buttons)
     print("joltage:", joltage)
