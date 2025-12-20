@@ -1,0 +1,86 @@
+key: bbb
+ k2: ddd
+  keyR: ggg
+  keyR: out
+ k2: eee
+  keyR: out
+key: ccc
+ k2: ddd
+  keyR: ggg
+  keyR: out
+ k2: eee
+  keyR: out
+ k2: fff
+  keyR: out
+
+
+
+
+
+
+
+
+key: aaa
+value: ['you', 'hhh']
+key: you
+value: ['bbb', 'ccc']
+key: bbb
+value: ['ddd', 'eee']
+key: ccc
+value: ['ddd', 'eee', 'fff']
+key: ddd
+value: ['ggg']
+key: eee
+value: ['out']
+['out']
+key: aaa
+value: ['you', 'hhh']
+key: you
+value: ['bbb', 'ccc']
+key: bbb
+value: ['ddd', 'out']
+key: ccc
+value: ['ddd', 'out', 'fff']
+key: ddd
+value: ['ggg']
+key: fff
+value: ['out']
+['out']
+key: aaa
+value: ['you', 'hhh']
+key: you
+value: ['bbb', 'ccc']
+key: bbb
+value: ['ddd', 'out']
+key: ccc
+value: ['ddd', 'out', 'out']
+key: ddd
+value: ['ggg']
+key: ggg
+value: ['out']
+['out']
+key: aaa
+value: ['you', 'hhh']
+key: you
+value: ['bbb', 'ccc']
+key: bbb
+value: ['ddd', 'out']
+key: ccc
+value: ['ddd', 'out', 'out']
+key: ddd
+value: ['out']
+['out']
+key: aaa
+value: ['you', 'hhh']
+key: you
+value: ['bbb', 'ccc']
+key: bbb
+value: ['out', 'out']
+key: ccc
+value: ['out', 'out', 'out']
+key: hhh
+value: ['ccc', 'out', 'iii']
+key: iii
+value: ['out']
+['out']
+{'aaa': ['you', 'hhh'], 'you': ['bbb', 'ccc'], 'bbb': ['out', 'out'], 'ccc': ['out', 'out', 'out'], 'hhh': ['ccc', 'out', 'out']}
